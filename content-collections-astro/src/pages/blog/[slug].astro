@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog');
+
+  return blogPosts.map((post) => ({
+    params: {
+      slug: post.slug
+    },
+    props: {
+      post
+    }
+  }))
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+<main>
+  <h1>{post.data.title}</h1>
+  <!-- It comes from the MD file that we get from the content collection in line 6 -->
+  <Content />
+</main>
+</Layout>
+
+
+<style>
+  main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 60ch;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+</style>

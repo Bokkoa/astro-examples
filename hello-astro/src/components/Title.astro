@@ -1,0 +1,36 @@
+---
+const title = "My First component"
+const items = ['Cat', 'Dog', 'Tiger', 'Lion']
+const style = "list-item-style"
+---
+
+<h1>{title}</h1>
+
+<ul>
+  {items.map((item) => {
+      <li class={style} >{item}</li>
+  })}
+</ul>
+
+
+<ul>
+  {
+    items.map( item => (
+      <>
+        <li class={style}>{item}</li>
+      </>
+    ))
+  }
+</ul>
+
+<style>
+  h1{
+    color: brown;
+  }
+
+  .item-list {
+    color: red;
+    list-style-type: circle;
+    font-weight: bold;
+  }
+</style>

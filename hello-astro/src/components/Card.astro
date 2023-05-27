@@ -1,0 +1,60 @@
+---
+
+// custom names for div tags to avoid div spam anti pattern
+const Card = 'div'
+const Container = 'div'
+
+export interface Props {
+  name: string
+  job?: string
+  avatar: boolean
+}
+
+const { name, job = "Not defined", avatar } = Astro.props
+---
+
+
+<script>
+  const button = document.getElementById('btn')
+  button?.addEventListener('click', (message?: any):void => {
+    alert('hi')
+  })
+</script>
+
+<button id="btn">
+  click
+</button>
+<Card class="card">
+  <img src={avatar ? 'images/avatar2.png' : 'images/avatar.jpg' } alt="image" style="width:100%" />
+  <Container class="container">
+    <h4>{name}</h4>
+    <p>{job}</p>
+  </Container>
+
+  <!-- put content  between tags with <slot />  -->
+  <!-- default content used between slot tags  -->
+  <slot name="game" />
+  <slot name="desc" >
+    Default description content
+  </slot>
+</Card>
+
+
+<style>
+  .card{
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    margin-left: 50px;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 20px;
+  }
+
+  .card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .container {
+    padding: 2px, 16px;
+  }
+</style>

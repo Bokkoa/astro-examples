@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+// STATIC WAY FOR ROUTES
+// export function getStaticPaths(){
+//   return [
+//     { params: { id: '123'}},
+//     { params: { id: '2323'}},
+//     { params: { id: '14323asdf'}}
+//   ]
+// }
+
+const { id } = Astro.params;
+---
+
+
+
+<Layout title="Blog">
+  <h2>The given id is {id}</h2>
+</Layout>
